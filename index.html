@@ -156,8 +156,8 @@
             var formattedtotalCostOfTruckRolls = "$" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
             // Display results
-            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="This is calculated using the number of truck rolls per month multiplied by the average cost per truck roll ($1000)."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</p>';
-            document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Reduction percentage of 40%. Emission factor of 0.43 kg CO2 eq per mile">Potential savings per month with <a class="primary-color" href="https://www.apizee.com/request-a-demo/" target="_blank">Apizee</a>: ' + formattedSavings + ' <br/>(<i class="fas fa-leaf fa-2xs"></i> ' + co2Savings + ' kg CO<sub>2</sub> eq.)</p>';
+            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Average cost per truck roll: $1,000."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</p>';
+            document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Reduction of truck rolls by 40% (data: Apizee). Emission factor of 0.43 T CO2 eq per mile (data:Carbon Trust)">Potential savings per month with <a class="primary-color" href="https://www.apizee.com/request-a-demo/" target="_blank">Apizee</a>: ' + formattedSavings + ' <br/>(<i class="fas fa-leaf fa-2xs"></i> ' + co2Savings + ' kg CO<sub>2</sub> eq.)</p>';
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
