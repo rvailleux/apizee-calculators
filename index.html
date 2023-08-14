@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Figtree" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <title>Truck Roll Calculator</title>
     <style>
         body,
@@ -63,7 +64,8 @@
         <img src="https://apirtc.com/wp-content/uploads/2023/05/logo-apizee.png" alt="Apizee Logo" class="logo">
 
         <h1 class="text-right primary-color">Truck Roll Calculator</h1>
-        <div id="results" class="primary-bg-color p-3 mb-3 text-right" aria-live="polite"></div>
+        <div id="results" class="primary-bg-color p-3 text-right" aria-live="polite"></div>
+        <div id="results_2" class="primary-black text-right" aria-live="polite"></div>
         <form id="truck-roll-form" class="mt-4">
             <div class="row">
                 <div class="form-group col-md-6">
@@ -98,6 +100,12 @@
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+
     <script>
         document.getElementById("share-link").addEventListener("click", function (e) {
             e.preventDefault();
@@ -111,7 +119,6 @@
             document.getElementById("num-truck-rolls").classList.remove("error-input");
             document.getElementById("average-distance").classList.remove("error-input");
 
-            console.log(document.getElementById("average-distance").value)
             // Get input values from form
             var numTruckRolls = parseInt(document.getElementById("num-truck-rolls").value == "" ? 0 : document.getElementById("num-truck-rolls").value);
             var averageDistance = parseInt(document.getElementById("average-distance").value == "" ? 0 : document.getElementById("average-distance").value);
@@ -142,27 +149,28 @@
 
             // Calculate CO2 emissions savings
             var co2Savings = numTruckRolls * averageDistance * emissionFactor;
+            co2Savings = co2Savings.toPrecision(2)
 
             // Format potential savings as currency
             var formattedSavings = "$" + potentialSavings.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             var formattedtotalCostOfTruckRolls = "$" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
             // Display results
-            var resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = '<h3 data-bs-toggle="tooltip" data-bs-original-title="This is calculated using the number of truck rolls per month multiplied by the average cost per truck roll ($1000)."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</h3>' +
-                '<h3 data-bs-toggle="tooltip" data-bs-original-title="Reduction percentage of 40%. Emission factor of 0.43 kg CO2 eq per mile">Potential savings per month: <br>' + formattedSavings + '<br> <i class="fas fa-leaf fa-2xs" ></i> ' + co2Savings.toFixed(2) + ' kg CO2 eq.</h3>';
+            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="This is calculated using the number of truck rolls per month multiplied by the average cost per truck roll ($1000)."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</p>';
+            document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Reduction percentage of 40%. Emission factor of 0.43 kg CO2 eq per mile">Potential savings per month with Apizee: ' + formattedSavings + ' <br/>(<i class="fas fa-leaf fa-2xs"></i> ' + co2Savings + ' kg CO<sub>2</sub> eq.)</p>';
 
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+  /*           var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
-        }
 
-        // Initialize the results box with default values
-        document.getElementById("results").innerHTML = '<h3>Total cost of truck rolls per month: $0.00</h3>' +
-            '<h3>Potential savings per month: <br>$0.00<br><i class="fas fa-leaf fa-2xs"></i> 0.00 kg CO2 eq.</h3>';
 
+   */      }
+
+        calculateSavings()
 
 
     </script>
