@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Figtree" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Truck Roll Calculator</title>
+    <style>
+        body,
+        h1,
+        h3 {
+            font-family: 'FigTree', sans-serif;
+        }
+
+        h1 {
+            font-weight: bolder;
+        }
+
+        .primary-color {
+            color: rgb(235, 62, 10);
+        }
+
+        .primary-bg-color {
+            background-color: rgb(235, 62, 10);
+            color: white;
+        }
+
+        .container-box {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .form-row>div {
+            flex: 1;
+        }
+
+        .share-icons i,
+        #share-link {
+            color: rgb(235, 62, 10);
+        }
+
+        .logo {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .error-input {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container container-box mt-5">
+        <img src="https://apirtc.com/wp-content/uploads/2023/05/logo-apizee.png" alt="Apizee Logo" class="logo">
+
+        <h1 class="text-right primary-color">Truck Roll Calculator</h1>
+        <div id="results" class="primary-bg-color p-3 mb-3 text-right" aria-live="polite"></div>
+        <form id="truck-roll-form" class="mt-4">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="num-truck-rolls">Number of truck rolls per month:</label>
+                    <input type="number" class="form-control" id="num-truck-rolls" name="num-truck-rolls"
+                        placeholder="e.g., 150" oninput="calculateSavings()" aria-describedby="truckRollsHelp">
+                    <small id="truckRollsHelp" class="form-text text-muted">Enter the total number of truck rolls per
+                        month. Cost per truck roll is $1000.</small>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="average-distance">Average truck roll distance (miles):</label>
+                    <input type="number" class="form-control" id="average-distance" name="average-distance"
+                        placeholder="e.g., 75" oninput="calculateSavings()" aria-describedby="distanceHelp">
+                    <small id="distanceHelp" class="form-text text-muted">Enter the average distance per truck roll in
+                        miles.</small>
+                </div>
+            </div>
+        </form>
+        <div id="error-message" class="mt-4 text-danger text-right"></div>
+        <div class="mt-4">
+            <a href="#" id="share-link">Share this tool <i class="fas fa-share-alt"></i></a>
+            <div id="share-icons" class="share-icons" style="display: none;">
+                <a href="mailto:?subject=Try the Truck Roll Calculator!&body=Check out this amazing Truck Roll Calculator! It helps you calculate potential savings and CO2 emissions. Give it a try!"
+                    target="_blank"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com/truck-roll-calculator"
+                    target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/intent/tweet?text=Check out this amazing Truck Roll Calculator! It helps you calculate potential savings and CO2 emissions. Give it a try! https://yourwebsite.com/truck-roll-calculator"
+                    target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://yourwebsite.com/truck-roll-calculator"
+                    target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("share-link").addEventListener("click", function (e) {
+            e.preventDefault();
+            var shareIcons = document.getElementById("share-icons");
+            shareIcons.style.display = shareIcons.style.display === "none" ? "block" : "none";
+        });
+
+        function calculateSavings() {
+            // Clear previous errors and styles
+            document.getElementById("error-message").innerHTML = "";
+            document.getElementById("num-truck-rolls").classList.remove("error-input");
+            document.getElementById("average-distance").classList.remove("error-input");
+
+            console.log(document.getElementById("average-distance").value)
+            // Get input values from form
+            var numTruckRolls = parseInt(document.getElementById("num-truck-rolls").value == "" ? 0 : document.getElementById("num-truck-rolls").value);
+            var averageDistance = parseInt(document.getElementById("average-distance").value == "" ? 0 : document.getElementById("average-distance").value);
+
+            // Validate input values
+            if (isNaN(numTruckRolls) || numTruckRolls < 0) {
+                document.getElementById("error-message").innerHTML = "Please enter a valid number of truck rolls. Value must be greater than zero.";
+                document.getElementById("num-truck-rolls").classList.add("error-input");
+                return;
+            }
+
+            if (isNaN(averageDistance) || averageDistance < 0) {
+                document.getElementById("error-message").innerHTML = "Please enter a valid average distance. Value must be greater than zero.";
+                document.getElementById("average-distance").classList.add("error-input");
+                return;
+            }
+
+            // Constant values
+            var costPerTruckRoll = 1000;
+            var reductionPercentage = 40;
+            var emissionFactor = 0.43 / 100; // kg CO2 eq per mile
+
+            // Calculate total cost of truck rolls
+            var totalCostOfTruckRolls = numTruckRolls * costPerTruckRoll;
+
+            // Calculate potential savings
+            var potentialSavings = totalCostOfTruckRolls * (reductionPercentage / 100);
+
+            // Calculate CO2 emissions savings
+            var co2Savings = numTruckRolls * averageDistance * emissionFactor;
+
+            // Format potential savings as currency
+            var formattedSavings = "$" + potentialSavings.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            var formattedtotalCostOfTruckRolls = "$" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+            // Display results
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = '<h3 data-bs-toggle="tooltip" data-bs-original-title="This is calculated using the number of truck rolls per month multiplied by the average cost per truck roll ($1000)."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</h3>' +
+                '<h3 data-bs-toggle="tooltip" data-bs-original-title="Reduction percentage of 40%. Emission factor of 0.43 kg CO2 eq per mile">Potential savings per month: <br>' + formattedSavings + '<br> <i class="fas fa-leaf fa-2xs" ></i> ' + co2Savings.toFixed(2) + ' kg CO2 eq.</h3>';
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        }
+
+        // Initialize the results box with default values
+        document.getElementById("results").innerHTML = '<h3>Total cost of truck rolls per month: $0.00</h3>' +
+            '<h3>Potential savings per month: <br>$0.00<br><i class="fas fa-leaf fa-2xs"></i> 0.00 kg CO2 eq.</h3>';
+
+
+
+    </script>
+</body>
+
+</html>
