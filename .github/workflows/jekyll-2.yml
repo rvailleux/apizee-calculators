@@ -1,37 +1,31 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy Jekyll Site
 
 on:
   push:
     branches:
-      - main  # Change this to your main branch name
+      - main  # assuming you're using the 'main' branch. Change to 'master' if you're using the master branch
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v2
-        with:
-          ruby-version: 2.7
+    - name: Build Jekyll site
+      run: |
+        docker run \
+          -v $PWD/truck-roll-calculator:/srv/jekyll \
+          -v $PWD/truck-roll-calculator/_site:/srv/jekyll/_site \
+          jekyll/jekyll:latest \
+          jekyll build
 
-      - name: Install dependencies
-        run: |
-          cd truck-roll-calculator
-          gem install bundler
-          bundle install
-
-      - name: Build and deploy
-        run: |
-          cd truck-roll-calculator
-          bundle exec jekyll build
-          ls _site
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: truck-roll-calculator/_site
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./truck-roll-calculator/_site
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'Deploy to GitHub Pages'
