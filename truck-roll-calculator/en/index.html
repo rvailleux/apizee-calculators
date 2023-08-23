@@ -73,7 +73,7 @@
                     <input type="number" class="form-control" id="num-truck-rolls" name="num-truck-rolls"
                         placeholder="e.g., 150" oninput="calculateSavings()" aria-describedby="truckRollsHelp" required>
                     <small id="truckRollsHelp" class="form-text text-muted">Enter the total number of truck rolls per
-                        month. Cost per truck roll is $1000.</small>
+                        month.</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="average-distance">Average truck roll distance (miles):</label>
@@ -139,11 +139,12 @@
 
             // Constant values
             var costPerTruckRoll = 1000;
+            var costPerMile = 2.9
             var reductionPercentage = 40;
             var emissionFactor = 0.43; // T CO2 eq per mile
 
             // Calculate total cost of truck rolls
-            var totalCostOfTruckRolls = numTruckRolls * costPerTruckRoll;
+            var totalCostOfTruckRolls = numTruckRolls * costPerMile * averageDistance;
 
             // Calculate potential savings
             var potentialSavings = totalCostOfTruckRolls * (reductionPercentage / 100);
@@ -157,15 +158,12 @@
             var formattedtotalCostOfTruckRolls = "$" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
             // Display results
-            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Average cost per truck roll: $1,000."> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</p>';
+            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Average cost per mile of truck roll: $2,9 (source: National Private Truck Council (NPTC))"> Total cost of truck rolls per month: ' + formattedtotalCostOfTruckRolls + '</p>';
             document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Reduction of truck rolls by 40% (data: Apizee). Emission factor of 0.43 T CO2 eq per mile (data:Carbon Trust)">Potential savings per month with <a class="primary-color" href="https://www.apizee.com/request-a-demo/" target="_blank">Apizee</a>: ' + formattedSavings + ' <br/>(<i class="fas fa-leaf fa-2xs"></i> ' + co2Savings + ' T CO<sub>2</sub> eq.)</p>';
 
         }
 
-        // Display results
-        document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Average cost per truck roll: $1,000."> Total cost of truck rolls per month: $0.00</p>';
-        document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Reduction of truck rolls by 40% (data: Apizee). Emission factor of 0.43 T CO2 eq per mile (data:Carbon Trust)">Potential savings per month with <a class="primary-color" href="https://www.apizee.com/request-a-demo/" target="_blank">Apizee</a>: $0.00 <br/>(<i class="fas fa-leaf fa-2xs"></i> 0.00 T CO<sub>2</sub> eq.)</p>';
-
+        calculateSavings()
 
     </script>
 </body>

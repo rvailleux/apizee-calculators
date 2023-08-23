@@ -63,7 +63,7 @@
     <div class="container container-box">
         <img src="https://apirtc.com/wp-content/uploads/2023/05/logo-apizee.png" alt="Logo Apizee" class="logo">
 
-        <h1 class="text-right primary-color">Calculateur de Coûts des Déplacements</h1>
+        <h1 class="text-right primary-color">Calculateur de Coûts <br/>des Déplacements</h1>
         <div id="results" class="primary-bg-color p-3 text-right rounded" aria-live="polite"></div>
         <div id="results_2" class="primary-black text-right" aria-live="polite"></div>
         <form id="truck-roll-form" class="mt-4">
@@ -72,7 +72,7 @@
                     <label for="num-truck-rolls">Nombre de déplacements par mois :</label>
                     <input type="number" class="form-control" id="num-truck-rolls" name="num-truck-rolls"
                         placeholder="ex., 150" oninput="calculateSavings()" aria-describedby="truckRollsHelp" required>
-                    <small id="truckRollsHelp" class="form-text text-muted">Entrez le nombre total de déplacements par mois. Le coût par déplacement est de 1 000 €.</small>
+                    <small id="truckRollsHelp" class="form-text text-muted">Entrez le nombre total de déplacements par mois.</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="average-distance">Distance moyenne de déplacement (km) :</label>
@@ -137,11 +137,12 @@
 
             // Constant values
             var costPerTruckRoll = 1000;
+            var costPerKm = 2.9 / 1.609934;
             var reductionPercentage = 40;
             var emissionFactor = 0.43 / 1.609934; // T CO2 eq per mile
 
             // Calculate total cost of truck rolls
-            var totalCostOfTruckRolls = numTruckRolls * costPerTruckRoll;
+            var totalCostOfTruckRolls = numTruckRolls * costPerKm * averageDistance;
 
             // Calculate potential savings
             var potentialSavings = totalCostOfTruckRolls * (reductionPercentage / 100);
@@ -155,7 +156,7 @@
             var formattedtotalCostOfTruckRolls = totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + " €";
 
             // Display results
-            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Coût moyen par déplacement de camion : 1 000 €."> Coût total des déplacements par mois:<br/>' + formattedtotalCostOfTruckRolls + '</p>';
+            document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="Coût moyen par km : 1,80€ (source: National Private Truck Council (NPTC))"> Coût total des déplacements par mois:<br/>' + formattedtotalCostOfTruckRolls + '</p>';
             document.getElementById("results_2").innerHTML = '<p data-trigger="hover" data-bs-toggle="tooltip" title="Réduction des déplacements de camions de 40 % (données : Apizee). Facteur d\'émission de 0,43 T eq CO2 par mile (données : Carbon Trust)">Économies potentielles par mois avec <a class="primary-color" href="https://www.apizee.com/request-a-demo/" target="_blank">Apizee</a>: ' + formattedSavings + ' <br/>(<i class="fas fa-leaf fa-2xs"></i> ' + co2Savings + ' T CO<sub>2</sub> eq.)</p>';
 
         }
