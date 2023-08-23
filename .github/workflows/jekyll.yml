@@ -45,6 +45,7 @@ jobs:
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}/truck-roll-calculator/"
+        working-directory: ./truck-roll-calculator/
         env:
           JEKYLL_ENV: production
       - name: Upload artifact
@@ -52,7 +53,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           name: my-artifact
-          path: "${{ steps.pages.outputs.base_path }}/truck-roll-calculator/"
+          path: "./truck-roll-calculator/_site"
 
   # Deployment job
   deploy:
