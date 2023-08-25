@@ -1,7 +1,7 @@
 # Apizee Calculators
 Here are some costs and savings calculators in the fields addressed by Apizee solutions.
 
-- [Truckroll Cost Calculator]()
+- [Truck Roll Cost Calculator](https://apizee.github.io/apizee-calculators/truck-roll-calculator/)
 
 # Requirements
 - ruby
@@ -36,4 +36,4 @@ bundle exec jekyll serve --watch
 ```
 
 # Production
-Deployed on Github Pages
+Deployed on Github Pages through Github Action standard deployment script.
