@@ -1,6 +1,7 @@
 # Apizee Calculators
-Here are some costs and savings calculators in the fields addressed by Apizee solutions. 
+Here are some costs and savings calculators in the fields addressed by Apizee solutions.
 
+- [Truckroll Cost Calculator]()
 
 # Requirements
 - ruby
@@ -22,12 +23,17 @@ gem install jekyll bundler
 bundle install
 ```
 
-# How to generate a build of the site
+# Development environment
+
+## How to generate a build of the site
 ```bash
 bundle exec jekyll build
 ```
 
-# How to serve site
+## How to serve site
 ```bash
 bundle exec jekyll serve --watch
 ```
+
+# Production
+Deployed on Github Pages
