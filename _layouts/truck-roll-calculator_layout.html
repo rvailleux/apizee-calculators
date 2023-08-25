@@ -56,6 +56,11 @@
         .error-input {
             border-color: red;
         }
+
+        a, a:hover{
+            color : #6c757d
+        }
+
     </style>
 </head>
 
@@ -121,16 +126,9 @@
                 return;
             }
 
-            if (isNaN(averageDistance) || parseInt(averageDistance) < 0) {
-                document.getElementById("error-message").innerHTML = "{{page.errorInvalidAvgDistance}}";
-                document.getElementById("average-distance").classList.add("error-input");
-                return;
-            }
-
             // Constant values
-            var costPerTruckRoll = 1000;
+            var costPerTruckRoll = {{page.truckRollCostInCurrency}};
             var reductionPercentage = 40;
-            var emissionFactor = 0.43; // T CO2 eq per mile
 
             // Calculate total cost of truck rolls
             var totalCostOfTruckRolls = numTruckRolls * costPerTruckRoll;
@@ -140,8 +138,8 @@
 
 
             // Format potential savings as currency
-            var formattedSavings = "{{page.resultCostUnit}}" + potentialSavings.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            var formattedtotalCostOfTruckRolls = "{{page.resultCostUnit}}" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            var formattedSavings = "{{page.resultCostCurrencyPre}}" + potentialSavings.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '{{page.thousandsSeparator}}') + "{{page.resultCostCurrencyPost}}";
+            var formattedtotalCostOfTruckRolls = "{{page.resultCostCurrencyPre}}" + totalCostOfTruckRolls.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '{{page.thousandsSeparator}}') + "{{page.resultCostCurrencyPost}}";
 
             // Display results
             document.getElementById("results").innerHTML = '<p class="h3" data-trigger="hover" data-bs-toggle="tooltip" data-placement="top" title="{{page.resultCostHint}}">{{page.resultCostLabel}}: ' + formattedtotalCostOfTruckRolls + '</p>';
