@@ -21,6 +21,10 @@
             font-weight: bolder;
         }
 
+        .row {
+            margin-bottom: 10px;
+        }
+
         .primary-color {
             color: rgb(235, 62, 10);
         }
@@ -80,6 +84,16 @@
                     <small id="truckRollsHelp" class="form-text text-muted">{{page.nbTruckrollHint}}</small>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="rate-several-SC">{{page.rateServiceCallResolutionLabel}}:</label>
+                    <input type="number" class="form-control" id="rate-several-SC" name="rate-several-SC"
+                        placeholder="{{page.rateServiceCallResolutionExample}}" oninput="calculateSavings()" aria-describedby="rateServiceCallResolutionHelp" required>
+                    <small id="rateServiceCallResolutionExample" class="form-text text-muted">{{page.rateServiceCallResolutionHint}}</small>
+                </div>
+            </div>
+            <a class="btn btn-primary">Calculate</a>
+
         </form>
         <div id="error-message" class="mt-4 text-danger text-right"></div>
         <div class="mt-4">
