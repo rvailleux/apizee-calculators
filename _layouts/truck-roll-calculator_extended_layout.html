@@ -178,7 +178,7 @@
                                 <span class="value ">968</span>
                                 <span class="post-unit ">{{page.currencyUnitPost}}</span>
                             </p>
-                            <p class="result-data-title row"> {{page.cost_per_roll_label}}</p>
+                            <p class="result-data-title"> {{page.cost_per_roll_label}}</p>
 
                         </div>
 
@@ -190,7 +190,7 @@
                                 <span class="value ">65,040</span>
                                 <span class="post-unit ">{{page.currencyUnitPost}}</span>
                             </p>
-                            <p class="result-data-title row">{{page.cost_of_useless_rolls_label}}</p>
+                            <p class="result-data-title">{{page.cost_of_useless_rolls_label}}</p>
                         </div>
 
                         <!-- Average employee hours per truck roll -->
@@ -199,7 +199,7 @@
                                 <span class="value" style="text-align:right; padding-right:5px">52</span>
                                 <span class="post-unit " style="padding-left:0;text-align:left;">{{page.hoursUnit}}</span>
                             </p>
-                            <p class="result-data-title row">{{page.avg_employee_hours_label}}</p>
+                            <p class="result-data-title">{{page.avg_employee_hours_label}}</p>
                         </div>
 
                         <!-- Cost per km -->
@@ -209,7 +209,7 @@
                                 <span class="value ">8.07</span>
                                 <span class="post-unit ">{{page.currencyUnitPost}}</span>
                             </p>
-                            <p class="result-data-title row">{{page.cost_per_km_label}}</p>
+                            <p class="result-data-title">{{page.cost_per_km_label}}</p>
                         </div>
                     </div>
 
@@ -252,7 +252,7 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <canvas id="myDoughnutChart" ></canvas>
+                            <canvas id="costs-breakdown-chart" ></canvas>
                         </div>
                     </div>
 
@@ -324,7 +324,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <script src="/assets/js/labor-chart.js"></script>
+    <script src="{{site.baseurl}}/assets/js/labor-chart.js"></script>
 
     <script>
         // Data for the chart
@@ -333,7 +333,7 @@
             labels: ["Cost of labor", "Cost of gasoline", "Other costs"],
             colors: ["#EB3E0A", "#F88562", "#FDF3E8"],
             values: [0.8, 0.1, 0.1],
-            canvas_id: "myDoughnutChart"
+            canvas_id: "costs-breakdown-chart"
         }
 
         makeChart(options)
