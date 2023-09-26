@@ -21,7 +21,7 @@
 title: Truck Roll Calculator
 #email: your-email@example.com
 #description: 
-baseurl: "/apizee-calculators" # the subpath of your site, e.g. /blog
+baseurl: "" #/apizee-calculators" # the subpath of your site, e.g. /blog
 url: "https://apizee.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 #github_username:  jekyll

@@ -1,0 +1,63 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color:  rgb(235, 62, 10);
+$app-width: 800px;
+
+
+
+ @font-face {
+     font-family: 'FigTree';
+     font-size: 20px;
+     src: url(/assets/fonts/Figtree-VariableFont_wght.ttf);
+   }
+
+
+body,
+h1,
+h3 {
+    font-family: 'FigTree', sans-serif;
+}
+
+h1 {
+    font-weight: bolder;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.primary-color {
+    color: $primary-color;
+}
+
+.primary-bg-color {
+    background-color: $primary-color;
+    color: white;
+}
+
+.container-box {
+    max-width: $app-width;
+    margin: auto;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.share-icons i,
+#share-link {
+    color: $primary-color;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.error-input {
+    border-color: red;
+}
+
+a,
+a:hover {
+    color: #6c757d
+}

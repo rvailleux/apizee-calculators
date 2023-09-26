@@ -1,0 +1,56 @@
+--- 
+--- 
+@use 'main';
+
+
+
+.container-box {
+    max-width: 1200px;
+}
+
+.main-result {
+
+    .result-value {
+
+        .pre-unit {}
+
+        .value {
+            font-size: 6em;
+            font-weight: bolder;
+            color: main.$primary-color;
+        }
+
+        .post-unit {
+            color: main.$primary-color;
+            font-size: 2em;
+        }
+    }
+}
+
+
+
+.result-cost-distribution .result-data-title {
+    font-size: 1.6em;
+}
+
+.result-cost-distribution .result-value {
+    font-size: 1.6em;
+}
+
+.result-section-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.result-data-title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.costs-tiles .result-value {
+    font-size: 1.5em;
+}
+
+#truck-roll-form label {
+    font-size: 1.2em;
+}
