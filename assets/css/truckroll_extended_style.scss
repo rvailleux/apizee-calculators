@@ -1,5 +1,6 @@
 --- 
 --- 
+
 @use 'main';
 
 
@@ -8,11 +9,47 @@
     max-width: 1200px;
 }
 
+.intro {
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: main.$light-dark;
+    }
+
+}
+
+.truck-roll-input{
+    border-radius: 15px;
+
+    .btn-cta{
+        background-color: main.$primary-color;
+        border: none;
+        width: 100%;
+        font-size: 1.5em;
+    }
+}
+
+
 .main-result {
 
-    .result-value {
+    margin-bottom: 0;
 
-        .pre-unit {}
+    .result-section-title {
+        font-size: 1.2em;
+        margin:0;
+    }
+
+    .result-value {
+        margin-bottom: 0;
+
+        .pre-unit {
+            font-size: 6em;
+            font-weight: bolder;
+            color: main.$primary-color;
+        }
 
         .value {
             font-size: 6em;
@@ -27,14 +64,73 @@
     }
 }
 
-
-
-.result-cost-distribution .result-data-title {
-    font-size: 1.6em;
+.result-hypothesis{
+    color: main.$light-dark;
+    font-size: 1.5em;
 }
 
-.result-cost-distribution .result-value {
+.tiles {
+    .result-output{
+        border-radius: 10px;
+        background-color: main.$tertiary-color;
+        
+
+        .result-data-title{
+            //padding: 0 15px 0 15px;
+            font-size: 1.3em;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .result-value{
+            color: main.$primary-color-light;
+            font-weight: bold;
+            font-size: 2.2em;
+
+            .pre-unit{
+                text-align: right;
+                padding-right:0;
+            }
+            
+            .value{
+                padding:0;
+            }
+            .post-unit{
+                text-align: left;
+                padding-left:0;
+            }
+        }
+    }
+}
+
+
+.result-cost-distribution {
+    
+    .result-data-title {
     font-size: 1.6em;
+    font-weight: normal;
+    }
+
+    .result-value {        
+        font-size: 1.6em;
+    
+        .percentage {
+            font-size: 1em;
+        }
+    }
+}
+
+.result-breakeven {
+    .result-data-title {
+        font-size: 2em;
+        text-align: center;
+    }
+    .result-value {
+        text-align: center;
+        font-size: 3em;
+        font-weight: bold;
+        color: main.$primary-color;
+    }
 }
 
 .result-section-title {

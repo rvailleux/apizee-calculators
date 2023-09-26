@@ -1,5 +1,9 @@
 $font-stack: Helvetica, sans-serif;
-$primary-color:  rgb(235, 62, 10);
+$primary-color: #EB3E0A;
+$primary-color-light:  #F88562;
+$tertiary-color: #FDF3E8; 
+$dark: #000;
+$light-dark: #555;
 $app-width: 800px;
 
 
@@ -15,6 +19,7 @@ body,
 h1,
 h3 {
     font-family: 'FigTree', sans-serif;
+    color: $dark;
 }
 
 h1 {
