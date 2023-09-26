@@ -1,3 +1,4 @@
+$baseurl: "" !default;
 $font-stack: Helvetica, sans-serif;
 $primary-color: #EB3E0A;
 $primary-color-light:  #F88562;
@@ -7,12 +8,11 @@ $light-dark: #555;
 $app-width: 800px;
 
 
-
  @font-face {
-     font-family: 'FigTree';
-     font-size: 20px;
-     src: url(/assets/fonts/Figtree-VariableFont_wght.ttf);
-   }
+      font-family: 'FigTree';
+      font-size: 20px;
+      src: url($baseurl + "/assets/fonts/Figtree-VariableFont_wght.ttf");
+    }
 
 
 body,

@@ -1,7 +1,11 @@
 --- 
+title: CSS Stylesheet
 --- 
 
-@use 'main';
+
+@use "main" with (
+    $baseurl: "{{site.baseurl}}"
+  );
 
 .container-box {
     max-width: 1200px;
