@@ -29,7 +29,7 @@
                                     value="14" min="0" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value greater than 0
+                                {{page.errorMsgGTZero}}
                             </div>
                             <small id="truckRollsHelp" class="form-text text-muted">{{page.nbTruckrollHint}}</small>
 
@@ -45,7 +45,7 @@
                                     min="0" aria-describedby="avgTruckRollDistanceHelp" value="120" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value greater than 0
+                                {{page.errorMsgGTZero}}
                             </div>
                             <small id="avgTruckRollDistanceHelp"
                                 class="form-text text-muted">{{page.avgTruckRollDistanceHint}}</small>
@@ -59,7 +59,7 @@
                                     aria-describedby="numTechniciansHelp" value="5" min="0" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value greater than 0
+                                {{page.errorMsgGTZero}}
                             </div>
                             <small id="numTechniciansHelp"
                                 class="form-text text-muted">{{page.numTechniciansHint}}</small>
@@ -74,30 +74,12 @@
                                     aria-describedby="costPerDistanceHelp" value="90" min="0" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value greater than 0
+                                {{page.errorMsgGTZero}}
                             </div>
                             <small id="costPerDistanceHelp" class="form-text text-muted">{{page.costPerDistanceHint}}
-                                <!-- <i
-                                    class="fa-solid fa-circle-info" data-bs-toggle="collapse"
-                                    href="#labor-cost-percentage-div" role="button" aria-expanded="false"
-                                    aria-controls="labor-cost-percentage-div"></i> -->
                             </small>
 
                         </div>
-                        <!-- <div class="row collapse" id="labor-cost-percentage-div">
-                            <label for="labor-cost-percentage">{{page.laborCostPercentageLabel}}:</label>
-                            <div class="input-group">
-                                <span class="input-group-text" id="inputGroup-laborCostPercentage">%</span>
-                                <input type="number" class="form-control" id="labor-cost-percentage"
-                                    name="labor-cost-percentage" placeholder="{{page.laborCostPercentageExample}}"
-                                    aria-describedby="laborCostPercentageHelp" value="90" min="0" max="100" required>
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter a value between 1 and 100
-                            </div>
-                            <small id="laborCostPercentageHelp"
-                                class="form-text text-muted">{{page.laborCostPercentageHint}}</small>
-                        </div> -->
 
                         <div class="row">
                             <label for="first-time-fix-rate">{{page.firstTimeFixRateLabel}}:</label>
@@ -108,7 +90,7 @@
                                     aria-describedby="firstTimeFixRateHelp" value="75" min="0" max="100" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value between 1 and 100
+                                {{page.errorMsgBetweenZeroAndHundred}}
                             </div>
                             <small id="firstTimeFixRateHelp"
                                 class="form-text text-muted">{{page.firstTimeFixRateHint}}</small>
@@ -122,7 +104,7 @@
                                     aria-describedby="noFaultFoundRateHelp" value="15" min="0" max="100" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a value between 1 and 100
+                                {{page.errorMsgBetweenZeroAndHundred}}
                             </div>
                             <small id="noFaultFoundRateHelp"
                                 class="form-text text-muted">{{page.noFaultFoundRateHint}}</small>
